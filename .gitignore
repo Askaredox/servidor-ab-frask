@@ -1,0 +1,6 @@
+# settings VScode
+.vscode
+
+# python virtual environment
+__pycache__
+venv
