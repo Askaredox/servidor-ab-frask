@@ -10,11 +10,11 @@ class ReadMod:
             content = file.read()
             pcStatus = json.loads(content)
 
-            used_mem = float(pcStatus['um_temp'])
-            total_mem = float(pcStatus['tm_temp'])
+            used_mem = pcStatus['um_temp']
+            total_mem = pcStatus['tm_temp']
 
-            used_cpu = float(pcStatus['uc_temp'])
-            total_cpu = float(pcStatus['tc_temp'])
+            used_cpu = pcStatus['uc_temp']
+            total_cpu = pcStatus['tc_temp']
 
             ret['cpu'] = ReadMod.division(used_cpu, total_cpu)
             ret['ram'] = ReadMod.division(used_mem, total_mem)
