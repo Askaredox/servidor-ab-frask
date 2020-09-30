@@ -10,11 +10,11 @@ class ReadMod:
             content = file.read()
             pcStatus = json.loads(content)
 
-            used_mem = pcStatus['um_temp']
-            total_mem = pcStatus['tm_temp']
+            used_mem = pcStatus['u_mem']
+            total_mem = pcStatus['t_mem']
 
-            used_cpu = pcStatus['uc_temp']
-            total_cpu = pcStatus['tc_temp']
+            used_cpu = pcStatus['u_cpu']
+            total_cpu = pcStatus['t_cpu']
 
             ret['cpu'] = ReadMod.division(used_cpu, total_cpu)
             ret['ram'] = ReadMod.division(used_mem, total_mem)
@@ -24,6 +24,6 @@ class ReadMod:
     def division(a, b):
         try:
             ret = 100 * a / b
-            return ret
+            return int(ret)
         except ZeroDivisionError:
             return 0

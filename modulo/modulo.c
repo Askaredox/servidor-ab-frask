@@ -7,7 +7,6 @@
  *
 */
 
-
 #include <linux/init.h>   // Macros para funciones __init __exit
 #include <linux/module.h> // Header para cargar el modulo al kernel
 #include <linux/kernel.h> // Contiene tipos, macros y funciones para el kernel
@@ -15,30 +14,27 @@
 #include <linux/seq_file.h>
 #include <linux/proc_fs.h>
 #include <linux/mm.h>
-#include <linux/cpufreq.h>
+#include <linux/smp.h>     // get_cpu(), put_cpu()
+#include <linux/cpufreq.h> // cpufreq_get()
+#include <linux/cpumask.h> // cpumask_{first,next}(), cpu_online_mask
+
 
 void __attribute__((weak)) arch_report_meminfo(struct seq_file *m){}
 
 static int my_proc_show(struct seq_file *m, void *v){
     struct sysinfo i;
-    struct cpufreq_policy *cp;
-    unsigned long uc_temp, tc_temp, um_temp, tm_temp, mem_usage, cpu_usage;
+    unsigned cpu;
+    unsigned long u_cpu, t_cpu, u_mem, t_mem;
 
     si_meminfo(&i);
-    um_temp = i.totalram - i.freeram;
-    tm_temp = i.totalram;
-    mem_usage = um_temp / tm_temp;
-    //mem_usage = 33;
+    u_mem = i.totalram - i.freeram;
+    t_mem = i.totalram;
 
-    //cp = cpufreq_cpu_get(0);
-    //uc_temp = cp->cur - cp->min;
-    //tc_temp = cp->max - cp->min;
-    //cpu_usage = 100 * uc_temp / tc_temp;
-    uc_temp = cpufreq_quick_get(0);
-    tc_temp = cpufreq_quick_get_max(0);
-    cpu_usage = 0;
+    cpu = cpumask_first(cpu_online_mask);
+    u_cpu = cpufreq_quick_get(cpu);
+    t_cpu = cpufreq_quick_get_max(cpu);
 
-    seq_printf(m, "{\n\t\"um_temp\":%lu,\n\t\"tm_temp\":%lu,\n\t\"uc_temp\":%lu,\n\t\"tc_temp\":%lu\n}\n", um_temp, tm_temp, uc_temp, tc_temp);
+    seq_printf(m, "{\n\t\"u_mem\":%lu,\n\t\"t_mem\":%lu,\n\t\"u_cpu\":%lu,\n\t\"t_cpu\":%lu\n}\n", u_mem, t_mem, u_cpu, t_cpu);
 
     arch_report_meminfo(m);
 

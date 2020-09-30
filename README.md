@@ -45,11 +45,11 @@ Collection: "relleno"
 #### Correr Docker Compose
 Build up
 
-`$ sudo docker-compose -f "docker-compose.yml" up -d --build`
+`$ sudo docker-compose -f "docker-compose.yaml" up -d --build`
 
 Build down
 
-`$ sudo docker-compose -f "docker-compose.yml" down`
+`$ sudo docker-compose -f "docker-compose.yaml" down`
 
 ### Instalar Git
 
