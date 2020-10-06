@@ -3,7 +3,9 @@ import requests
 
 class Servicio:
     URL1 = 'http://172.19.0.2:80/api'
-    URL2 = 'http://192.168.1.21:5000/api'
+    URL2 = 'http://192.168.1.53:5000/api'
+    #URL1 = 'http://192.168.1.126:5000/api'
+    #URL2 = 'http://172.19.0.2:80/api'
 
     @staticmethod
     def send_data(autor, nota):
