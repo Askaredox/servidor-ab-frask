@@ -2,5 +2,8 @@
 .vscode
 
 # python virtual environment
-__pycache__
-venv
+serv1/__pycache__
+serv1/venv
+
+servab/__pycache__
+servab/venv

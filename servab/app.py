@@ -13,7 +13,7 @@ db = Mongo()
 
 @app.route('/')
 def check():
-    return "Todo good"
+    return "Todo good en servidor AB"
 
 
 @app.route('/api/pubs', methods=['GET'])
@@ -51,4 +51,4 @@ def watch():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80)
+    app.run(host='0.0.0.0', port=5000)

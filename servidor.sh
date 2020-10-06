@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Antes de correr
-## chmod +x servidorab.sh
+## chmod +x servidor.sh
 
 # instalar Docker Engine
 sudo apt update
@@ -32,7 +32,8 @@ make
 sudo insmod modulo.ko
 cd ..
 sudo docker-compose -f "docker-compose.yaml" up -d --build
-echo Done!
+sudo docker ps
+echo Ready!
 
 # Extras
 

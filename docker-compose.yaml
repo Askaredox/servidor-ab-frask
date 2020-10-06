@@ -1,13 +1,13 @@
 version: '3'
 
 services: 
-    web:
-        build: .
-        container_name: servidor_ab
+    webab:
+        build: servab/.
+        container_name: servidor-ab
         ports:
-            - "80:80"
+            - "5000:5000"
         volumes:
-            - .:/code
+            - .:/servab/codeAB
         networks: 
             app_net:
                 ipv4_address: 172.19.0.2
@@ -21,6 +21,16 @@ services:
         networks:
             app_net:
                 ipv4_address: 172.19.0.3
+    web1:
+        build: serv1/.
+        container_name: servidor-1
+        ports:
+            - "80:80"
+        volumes:
+            - .:/serv1/code1
+        networks: 
+            app_net:
+                ipv4_address: 172.19.0.4
 
 networks:
     app_net:
