@@ -155,7 +155,7 @@ static void show_stat(struct cpuinfo *val){
     
 
     val->total = TotalD;
-    val->used = TotalD-IdleD;
+    val->used = (TotalD-IdleD)*100;
 }
 
 static int my_proc_show(struct seq_file *m, void *v){
