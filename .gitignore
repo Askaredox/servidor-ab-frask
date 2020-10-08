@@ -7,3 +7,11 @@ serv1/venv
 
 servab/__pycache__
 servab/venv
+
+# modulos innecesarios
+.modulo.*
+modulo.*
+modules.order
+Module.symvers
+!modulo.c
+!Makefile
